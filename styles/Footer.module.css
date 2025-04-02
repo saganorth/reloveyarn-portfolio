@@ -1,0 +1,16 @@
+/* Footer.module.css */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #e9d5ff; /* Match the header's background color */
+  color: white;
+  gap: 20px; /* Space between text and logo */
+}
+
+.instagramLogo {
+  fill: white;
+  width: 24px; /* Adjust size as needed */
+  height: auto;
+}

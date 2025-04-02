@@ -1,0 +1,39 @@
+.bodyBackground {
+  background-color: #1a1a1a; /* Mörk bakgrundsfärg */
+  color: white; /* Vit textfärg */
+  font-family: 'Arial', sans-serif; /* Typsnitt */
+  padding: 20px; /* Lite utrymme runt innehållet */
+}
+
+.main-area, .info-area {
+  margin-bottom: 20px; /* Avstånd mellan artiklarna */
+}
+
+.box {
+  background-color: #333; /* Mörkare bakgrund för boxar */
+  padding: 15px; /* Padding inuti boxar */
+  border-radius: 5px; /* Runda hörn */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Skugga för djup */
+}
+
+.display-image {
+  height: 200px; /* Höjd för bildsektionen */
+  background-color: #444; /* Bakgrund för bildsektionen */
+  margin-bottom: 10px; /* Avstånd under bildsektionen */
+}
+
+.page-title {
+  color: #4CAF50; /* Accentfärg för titlar */
+  margin-bottom: 10px; /* Avstånd under titlar */
+}
+
+/* Responsiv design */
+@media (max-width: 600px) {
+  .bodyBackground {
+    padding: 10px;
+  }
+
+  .box, .display-image {
+    padding: 10px;
+  }
+}
