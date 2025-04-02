@@ -74,7 +74,7 @@ export const products = {
       {
         id: 8,
         namn: 'Elegant Handväska',
-        imageUrl: '/img/väska.jpeg',
+        imageUrl: '/img/väskas.jpeg',
         beskrivning:
           'Stilren och praktisk handväska, tillverkad av återvunnet material. Perfekt för dagligt bruk och håller alla dina essentials organiserade.',
         mått: '30 cm x 20 cm x 10 cm',
