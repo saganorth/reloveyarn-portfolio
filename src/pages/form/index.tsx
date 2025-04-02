@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../../component/ui/Header';
 import Footer from '../../component/ui/Footer';
-import FormComponent from '../../component/form /FormComponent';
+import FormComponent from '../../component/form/FormComponent';
 import { FormDataType } from '../../models/FromDataType';
 
 const FormPage = () => {

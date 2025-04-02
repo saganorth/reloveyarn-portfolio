@@ -44,26 +44,23 @@ const ProductPage: NextPage<ProductPageProps> = ({ product }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths: { params: { category: string; id: string } }[] = [];
+  const data = require('../../../data/products.json');
 
-  for (const category of Object.keys(productData)) {
-    if (!Array.isArray(productData[category])) continue;
+  // Only include actual product categories
+  const productCategories = ['filtar', 'mössor', 'väskor', 'balaklava'];
 
-    productData[category].forEach((product: any) => {
-      paths.push({
-        params: {
-          category,
-          id: product.id.toString()
-        }
-      });
-    });
-  }
+  const paths = productCategories.flatMap((category) =>
+    (data[category] || []).map((product: Product) => ({
+      params: { category, id: String(product.id) },
+    }))
+  );
 
   return {
     paths,
-    fallback: false
+    fallback: 'blocking',
   };
 };
+
 
 export const getStaticProps: GetStaticProps<ProductPageProps> = async ({ params }) => {
   const { category, id } = params as { category: string; id: string };
