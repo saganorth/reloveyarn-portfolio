@@ -10,7 +10,6 @@ const HomePage = () => {
   const { addToCart } = useCart();
 
   useEffect(() => {
-   
     const allProductsArray = [
       ...allProducts.filtar.map(p => ({ ...p, category: 'filtar' })),
       ...allProducts.mössor.map(p => ({ ...p, category: 'mössor' })),
@@ -29,7 +28,7 @@ const HomePage = () => {
     <main className="text-gray-800 min-h-screen flex flex-col">
   
       <section
-        className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-[50vh] sm:h-screen bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url('/img/vinter.png')` }}
       >
         <Link href="/vinter">
@@ -50,7 +49,7 @@ const HomePage = () => {
       </section>
 
       <section
-        className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-[50vh] sm:h-screen bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url('/img/10.png')` }}
       >
         <div className="absolute inset-0"></div>
@@ -88,3 +87,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
