@@ -177,7 +177,7 @@ const MossaForm: React.FC<MossaFormProps> = ({ formData, handleChange }) => {
                     type="text"
                     name="length"
                     value={formData.measurements.length}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange({ target: { name: 'measurements.length', value: e.target.value } })}
                     className="w-1/3 py-2 px-3 border-2 border-pink-300 rounded-full"
                     required
                 />

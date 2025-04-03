@@ -14,6 +14,7 @@ interface FormComponentProps {
 
 const FormComponent: React.FC<FormComponentProps> = ({ formData, setFormData, handleSubmit }) => {
   const [productType, setProductType] = useState<string>('');
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -53,119 +54,136 @@ const FormComponent: React.FC<FormComponentProps> = ({ formData, setFormData, ha
     }));
   };
 
+  const handleLocalSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    handleSubmit(e);
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 3000);
+  };
+
   return (
-    <div onSubmit={handleSubmit} className="max-w-3xl mx-auto p-8 md:p-10 bg-pink-100 rounded-3xl border-4 border-dashed border-pink-300 shadow-2xl" style={{ fontFamily: '"Comic Sans MS", cursive' }}>
+    <div className="relative max-w-3xl mx-auto p-8 md:p-10 bg-pink-100 rounded-3xl border-4 border-dashed border-pink-300 shadow-2xl" style={{ fontFamily: '"Comic Sans MS", cursive' }}>
       <h2 className="text-center text-3xl md:text-4xl font-extrabold text-pink-600 mb-6 uppercase tracking-wider">
         OMG, Pick Your Product!
       </h2>
       <p className="text-center text-gray-700 italic mb-8">
         The perfect crocheted item for your totally fab style!
       </p>
-      <div className="flex justify-center gap-6 mb-8 overflow-x-auto">
-      {[
-        { type: 'filt', imgSrc: '/img/filt.png' },
-        { type: 'väska', imgSrc: '/img/väska.png' },
-        { type: 'balaklava', imgSrc: '/img/balaklava.png' },
-        { type: 'mössa', imgSrc: '/img/mössa.png' }
-      ].map(({ type, imgSrc }) => (
-        <button
-          type="button"
-          key={type}
-          onClick={() => handleProductChange(type)}
-          className={`relative w-24 h-24 sm:w-32 sm:h-32 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-pink-300 rounded-full border-4 ${
-        productType === type ? 'border-pink-500' : 'border-pink-300'
-          } bg-white overflow-hidden flex items-center justify-center flex-shrink-0`}
-        >
-          <Image
-        src={imgSrc}
-        alt={type}
-        width={128}
-        height={128}
-        className="object-cover w-full h-full"
-        priority
-          />
-        </button>
-      ))}
+
+      <form onSubmit={handleLocalSubmit}>
+        <div className="flex justify-center gap-6 mb-8 overflow-x-auto">
+          {[
+            { type: 'filt', imgSrc: '/img/filt.png' },
+            { type: 'väska', imgSrc: '/img/väska.png' },
+            { type: 'balaklava', imgSrc: '/img/balaklava.png' },
+            { type: 'mössa', imgSrc: '/img/mössa.png' }
+          ].map(({ type, imgSrc }) => (
+            <button
+              type="button"
+              key={type}
+              onClick={() => handleProductChange(type)}
+              className={`relative w-24 h-24 sm:w-32 sm:h-32 transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-pink-300 rounded-full border-4 ${
+                productType === type ? 'border-pink-500' : 'border-pink-300'
+              } bg-white overflow-hidden flex items-center justify-center flex-shrink-0`}
+            >
+              <Image
+                src={imgSrc}
+                alt={type}
+                width={128}
+                height={128}
+                className="object-cover w-full h-full"
+                priority
+              />
+            </button>
+          ))}
         </div>
 
-      {productType && (
-        <div className="mb-6">
-          {productType === 'filt' && <FiltForm formData={formData} handleChange={handleChange} />}
-          {productType === 'mössa' && <MossaForm formData={formData} handleChange={handleChange} />}
-          {productType === 'balaklava' && <BalaklavaForm formData={formData} handleChange={handleChange} />}
-          {productType === 'väska' && <BagForm formData={formData} handleChange={handleChange} />}
-        </div>
-      )}
-
-      <div className="mb-4 bg-white p-4 rounded-2xl border-2 border-pink-200 shadow-md">
-        <h3 className="text-xl md:text-2xl font-bold mb-2 text-pink-700 uppercase tracking-wider">
-          Let's Keep In Touch, Bestie!
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
-          <div>
-            <label htmlFor="firstName" className="block text-sm font-bold text-gray-700">
-              First Name
-            </label>
-            <input
-              type="text"
-              name="firstName"
-              id="firstName"
-              value={formData.contactInfo.firstName}
-              onChange={handleChange}
-              className="mt-1 block w-full bg-pink-50 border-2 border-pink-300 rounded-full py-2 px-3"
-              required
-            />
+        {productType && (
+          <div className="mb-6">
+            {productType === 'filt' && <FiltForm formData={formData} handleChange={handleChange} />}
+            {productType === 'mössa' && <MossaForm formData={formData} handleChange={handleChange} />}
+            {productType === 'balaklava' && <BalaklavaForm formData={formData} handleChange={handleChange} />}
+            {productType === 'väska' && <BagForm formData={formData} handleChange={handleChange} />}
           </div>
+        )}
 
-          <div>
-            <label htmlFor="lastName" className="block text-sm font-bold text-gray-700">
-              Last Name
-            </label>
-            <input
-              type="text"
-              name="lastName"
-              id="lastName"
-              value={formData.contactInfo.lastName}
-              onChange={handleChange}
-              className="mt-1 block w-full bg-pink-50 border-2 border-pink-300 rounded-full py-2 px-3"
-              required
-            />
-          </div>
+        <div className="mb-4 bg-white p-4 rounded-2xl border-2 border-pink-200 shadow-md">
+          <h3 className="text-xl md:text-2xl font-bold mb-2 text-pink-700 uppercase tracking-wider">
+            Let&apos;s Keep In Touch, Bestie!
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+            <div>
+              <label htmlFor="firstName" className="block text-sm font-bold text-gray-700">
+                First Name
+              </label>
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                value={formData.contactInfo.firstName}
+                onChange={handleChange}
+                className="mt-1 block w-full bg-pink-50 border-2 border-pink-300 rounded-full py-2 px-3"
+                required
+              />
+            </div>
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-bold text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={formData.contactInfo.email}
-              onChange={handleChange}
-              className="mt-1 block w-full bg-pink-50 border-2 border-pink-300 rounded-full py-2 px-3"
-              required
-            />
-          </div>
+            <div>
+              <label htmlFor="lastName" className="block text-sm font-bold text-gray-700">
+                Last Name
+              </label>
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                value={formData.contactInfo.lastName}
+                onChange={handleChange}
+                className="mt-1 block w-full bg-pink-50 border-2 border-pink-300 rounded-full py-2 px-3"
+                required
+              />
+            </div>
 
-          <div>
-            <label htmlFor="phoneNumber" className="block text-sm font-bold text-gray-700">
-              Phone Number
-            </label>
-            <input
-              type="text"
-              name="phoneNumber"
-              id="phoneNumber"
-              value={formData.contactInfo.phoneNumber}
-              onChange={handleChange}
-              className="mt-1 block w-full bg-pink-50 border-2 border-pink-300 rounded-full py-2 px-3"
-            />
+            <div>
+              <label htmlFor="email" className="block text-sm font-bold text-gray-700">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={formData.contactInfo.email}
+                onChange={handleChange}
+                className="mt-1 block w-full bg-pink-50 border-2 border-pink-300 rounded-full py-2 px-3"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="phoneNumber" className="block text-sm font-bold text-gray-700">
+                Phone Number
+              </label>
+              <input
+                type="text"
+                name="phoneNumber"
+                id="phoneNumber"
+                value={formData.contactInfo.phoneNumber}
+                onChange={handleChange}
+                className="mt-1 block w-full bg-pink-50 border-2 border-pink-300 rounded-full py-2 px-3"
+              />
+            </div>
           </div>
         </div>
 
         <button type="submit" className="mt-4 px-4 py-2 bg-pink-600 text-white rounded-full hover:bg-pink-700 transition-colors">
           Submit
         </button>
-      </div>
+      </form>
+
+      {showPopup && (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-pink-100 border-4 border-pink-400 text-pink-800 px-8 py-6 rounded-3xl shadow-2xl text-center animate-bounce">
+          <p className="text-lg font-bold mb-2">🎉 Yaaas! Submission Received! 🎉</p>
+          <p className="text-sm">We&apos;ll get back to you ASAP, bestie 💌</p>
+        </div>
+      )}
     </div>
   );
 };
