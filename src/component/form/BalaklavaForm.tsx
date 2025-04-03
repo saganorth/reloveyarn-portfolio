@@ -116,45 +116,170 @@ const BalaklavaForm: React.FC<BalaklavaFormProps> = ({ formData, handleChange })
 
             <div className="mb-6">
                 <label className="block text-pink-800 text-base sm:text-lg font-extrabold uppercase mb-2 tracking-wider">
-                    3. Pick Your Yarn
-                </label>
-                <div className="flex flex-wrap items-center gap-2 sm:gap-4">
-                    {['Cotton', 'Wool', 'Acrylic'].map((yarn) => {
-                        const isSelected = formData.yarnType === yarn;
-                        return (
-                            <label key={yarn} className="cursor-pointer transition-transform hover:scale-105 mr-2 sm:mr-4 relative">
-                                <input
-                                    type="radio"
-                                    name="yarnType"
-                                    value={yarn}
-                                    checked={isSelected}
-                                    onChange={handleRadio}
-                                    className="hidden"
-                                />
-                                <span className="text-pink-700 font-bold text-xl sm:text-3xl">
-                                    {yarn}
-                                </span>
-                                {isSelected && (
-                                    <span className="absolute top-0 left-0 w-full h-full border-2 sm:border-4 border-pink-600 rounded-full pointer-events-none transform rotate-3"></span>
-                                )}
-                            </label>
-                        );
-                    })}
-                </div>
+                3. Pick Your Yarn
+              </label>
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                  {['Cotton', 'Wool', 'Acrylic'].map((yarn) => {
+                      const isSelected = formData.yarnType === yarn;
+                      return (
+                          <label
+                              key={yarn}
+                              className="
+                                  cursor-pointer
+                                  transition-transform
+                                  hover:scale-105
+                                  mr-2
+                                  sm:mr-4
+                                  relative
+                              "
+                          >
+                              <input
+                                  type="radio"
+                                  name="yarnType"
+                                  value={yarn}
+                                  checked={isSelected}
+                                  onChange={handleRadio}
+                                  className="hidden"
+                              />
+                              <span
+                                  className={`
+                                      text-pink-700
+                                      font-bold
+                                      text-xl
+                                      sm:text-3xl
+                                  `}
+                              >
+                                  {yarn}
+                              </span>
+                              {isSelected && (
+                                  <span
+                                      className="
+                                          absolute
+                                          top-0
+                                          left-0
+                                          w-full
+                                          h-full
+                                          border-2
+                                          sm:border-4
+                                          border-pink-600
+                                          rounded-full
+                                          pointer-events-none
+                                          transform
+                                          rotate-3
+                                      "
+                                  ></span>
+                              )}
+                          </label>
+                      );
+                  })}
+              </div>
+          </div>
+      
+          <div className="mb-6">
+            <label
+              htmlFor="width"
+              className="
+              block
+              text-pink-800
+              text-lg
+              font-extrabold
+              uppercase
+              mb-2
+              tracking-wider
+              "
+            >
+              4. Width (OMG!)
+            </label>
+            <div className="flex items-center space-x-2">
+              <input
+              type="text"
+              name="width"
+              id="width"
+              value={formData.measurements.width}
+              onChange={(e) => handleChange({ target: { name: 'measurements.width', value: e.target.value } })}
+              className="
+                w-1/3
+                py-2
+                px-3
+                border-2
+                border-pink-300
+                rounded-full
+                focus:outline-none
+                focus:ring-2
+                focus:ring-pink-200
+                text-gray-700
+                font-semibold
+              "
+              required
+              />
+              <span className="text-sm text-pink-600 font-bold">cm</span>
             </div>
-
+          </div>
+      
+          <div className="mb-6">
+            <label
+              htmlFor="length"
+              className="
+              block
+              text-pink-800
+              text-lg
+              font-extrabold
+              uppercase
+              mb-2
+              tracking-wider
+              "
+            >
+              5. Length (So Extra!)
+            </label>
+            <input
+              type="text"
+              name="length"
+              id="length"
+          
+              value={formData.measurements.length}
+              onChange={(e) => handleChange({ target: { name: 'measurements.length', value: e.target.value } })}
+              className="w-1/3 py-2 px-4 border-2 border-pink-300 rounded-full"
+              
+              required
+            />
+             <span className="text-sm text-pink-600 font-bold">cm</span>
+      
             <div className="mb-6">
-                <label className="block text-pink-800 text-lg font-extrabold uppercase mb-2 tracking-wider">
-                    4. Width (OMG!)
-                </label>
-                <input type="text" name="width" value={formData.measurements.width} onChange={handleChange} className="w-1/3 py-2 px-3 border-2 border-pink-300 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-200 text-gray-700 font-semibold" required />
-                <label className="block text-pink-800 text-lg font-extrabold uppercase mb-2 tracking-wider mt-4">
-                    5. Length (So Extra!)
-                </label>
-                <input type="text" name="length" value={formData.measurements.length} onChange={handleChange} className="w-1/3 py-2 px-3 border-2 border-pink-300 rounded-full" required />
+              <label
+                htmlFor="comment"
+                className="
+                  block
+                  text-pink-800
+                  text-lg
+                  font-extrabold
+                  uppercase
+                  mb-2
+                  tracking-wider
+                "
+              >
+                6. Your Juicy Thoughts!
+              </label>
+              <textarea
+                name="comment"
+                id="comment"
+                value={formData.comment ?? ''}
+                onChange={handleChange}
+                className="
+                  w-full
+                  py-2
+                  px-3
+                  border-2
+                  border-pink-300
+                  rounded-3xl
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-pink-200
+                  text-gray-700
+                  font-semibold
+                "
+              ></textarea>
             </div>
-
-            <textarea name="comment" value={formData.comment ?? ''} onChange={handleChange} className="w-full py-2 px-3 border-2 border-pink-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-pink-200 text-gray-700 font-semibold" rows={3} placeholder="Spill the tea, bestie!" required></textarea>
+          </div>
         </div>
     );
 };
