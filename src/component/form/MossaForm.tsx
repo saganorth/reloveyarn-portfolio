@@ -279,6 +279,7 @@ const MossaForm: React.FC<MossaFormProps> = ({ formData, handleChange }) => {
               ></textarea>
             </div>
           </div>
+            </div>
         </div>
     );
 };
