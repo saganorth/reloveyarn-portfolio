@@ -27,9 +27,10 @@ const MossaForm: React.FC<MossaFormProps> = ({ formData, handleChange }) => {
 
     return (
         <div className="p-4 md:p-6" style={{ fontFamily: '"Comic Sans MS", cursive' }}>
-            <h2 className="text-center text-3xl md:text-4xl font-extrabold text-pink-600 mb-6 uppercase tracking-widest">
-            Let&apos;s make your lit beanie!
-            </h2>
+            <div>
+                <h2 className="text-center text-3xl md:text-4xl font-extrabold text-pink-600 mb-6 uppercase tracking-widest">
+                Let&apos;s make your lit beanie!
+                </h2>
             <p className="text-center text-gray-700 italic mb-8">
                 Find your totally perfect style!
             </p>
@@ -141,16 +142,34 @@ const MossaForm: React.FC<MossaFormProps> = ({ formData, handleChange }) => {
 
             <div className="mb-6">
                 <label className="block text-pink-800 text-lg font-extrabold uppercase mb-2 tracking-wider">
-                    4. Width (OMG!)
-                </label>
-                <input
-                    type="text"
-                    name="width"
-                    value={formData.measurements.width}
-                    onChange={handleChange}
-                    className="w-1/3 py-2 px-3 border-2 border-pink-300 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-200 text-gray-700 font-semibold"
-                    required
-                />
+                4. Width (OMG!)
+            </label>
+            <div className="flex items-center space-x-2">
+              <input
+              type="text"
+              name="width"
+              id="width"
+              value={formData.measurements.width}
+              onChange={(e) => handleChange({ target: { name: 'measurements.width', value: e.target.value } })}
+              className="
+                w-1/3
+                py-2
+                px-3
+                border-2
+                border-pink-300
+                rounded-full
+                focus:outline-none
+                focus:ring-2
+                focus:ring-pink-200
+                text-gray-700
+                font-semibold
+              "
+              required
+              />
+              <span className="text-sm text-pink-600 font-bold">cm</span>
+            </div>
+          </div>
+      
                 <label className="block text-pink-800 text-lg font-extrabold uppercase mb-2 tracking-wider mt-4">
                     5. Length (So Extra!)
                 </label>
@@ -170,7 +189,6 @@ const MossaForm: React.FC<MossaFormProps> = ({ formData, handleChange }) => {
                 onChange={handleChange}
                 className="w-full py-2 px-3 border-2 border-pink-300 rounded-3xl focus:outline-none focus:ring-2 focus:ring-pink-200 text-gray-700 font-semibold"
                 rows={3}
-                placeholder="Spill the tea, bestie!"
                 required
             ></textarea>
         </div>
