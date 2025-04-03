@@ -28,7 +28,7 @@ const HomePage = () => {
     <main className="text-gray-800 min-h-screen flex flex-col">
   
       <section
-        className="relative w-full h-[50vh] sm:h-screen bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-96 bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url('/img/vinter.png')` }}
       >
         <Link href="/vinter">
@@ -53,6 +53,9 @@ const HomePage = () => {
         style={{ backgroundImage: `url('/img/10.png')` }}
       >
         <div className="absolute inset-0"></div>
+        <div className="absolute text-white text-4xl md:text-6xl font-bold text-center p-4 bg-black bg-opacity-40 rounded">
+          10% goes to charity
+        </div>
       </section>
 
       <section className="py-10 px-4 bg-pink-100 text-center">
