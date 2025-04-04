@@ -53,8 +53,8 @@ const HomePage = () => {
         style={{ backgroundImage: `url('/img/10.png')` }}
       >
         <div className="absolute inset-0"></div>
-        <div className="absolute text-white text-4xl md:text-6xl font-bold text-center p-4 bg-black bg-opacity-40 rounded">
-          10% goes to charity
+        <div className="absolute text-white text-lg sm:text-2xl font-semibold text-center px-6 py-2 bg-pink-600 bg-opacity-80 rounded-full shadow-lg">
+          ✨ 10% of every purchase supports charity ✨
         </div>
       </section>
 
@@ -85,9 +85,25 @@ const HomePage = () => {
           We believe in giving yarn a second chance. Our products are lovingly crafted from reclaimed or sustainable materials. Join us in making fashion more eco-friendly, one stitch at a time!
         </p>
       </section>
+
+      <section className="py-10 px-4 bg-pink-100 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-pink-600" style={{ fontFamily: "'Caveat', cursive" }}>
+          Follow us on Instagram
+        </h2>
+        <p className="mb-6 text-gray-600">Catch behind-the-scenes, yarn inspo & more ✨</p>
+        <div className="flex justify-center">
+          <iframe
+            src="https://www.instagram.com/reloveyarn/embed"
+            width="100%"
+            height="400"
+            className="rounded-xl shadow-md border border-pink-300 max-w-2xl w-full"
+            allowTransparency={true}
+            frameBorder="0"
+          ></iframe>
+        </div>
+      </section>
     </main>
   );
 };
 
 export default HomePage;
-
