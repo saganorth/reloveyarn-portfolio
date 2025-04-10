@@ -44,13 +44,14 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
                 height={400}
               />
             </div>
-            <div className="mt-2 text-center text-xl font-bold text-gray-800">
-              {product.namn}
-            </div>
+          
           </div>
 
-          <div className="flex flex-col justify-center items-center w-full">
+            <div className="flex flex-col justify-center items-center w-full">
             <div className="text-4xl font-bold mb-6 text-gray-900 text-center">
+              {product.namn}
+            </div>
+            <div className="mt-2 text-center text-xl font-bold text-gray-800">
               {product.pris ? `${product.pris.toFixed(2)} kr` : 'N/A'}
             </div>
             <p className="text-lg mb-8 text-gray-600 leading-loose italic text-center">
@@ -69,9 +70,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           <Popup show={showPopup} onClose={() => setShowPopup(false)} />
         )}
 
-        <div className="mt-12 text-center text-lg text-gray-500 italic">
-          “Discover the uniqueness of our collection, designed to bring elegance and comfort to your everyday life.”
-        </div>
+    
       </div>
     </div>
   );

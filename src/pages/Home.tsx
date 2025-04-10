@@ -7,7 +7,15 @@ import allProducts from '../data/products.json';
 
 const HomePage = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const { addToCart } = useCart();
+  
+  const slides = [
+    { url: '/img/newbag.png', link: '/bags'},
+  {url: '/img/scraps.png', link:'/scraps'},
+
+    
+  ];
 
   useEffect(() => {
     const allProductsArray = [
@@ -27,13 +35,32 @@ const HomePage = () => {
   return (
     <main className="text-gray-800 min-h-screen flex flex-col">
   
-      <section
-        className="relative w-full h-96 bg-cover bg-center flex items-center justify-center"
-        style={{ backgroundImage: `url('/img/vinter.png')` }}
-      >
-        <Link href="/vinter">
+      <section className="relative w-full h-[40vh] sm:h-screen">
+        {slides.map((slide, index) => (
+          <div
+        key={index}
+        className={`absolute w-full h-full transition-opacity duration-500 bg-cover bg-center ${
+          currentSlide === index ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ backgroundImage: `url(${slide.url})` }}
+          >
+        <Link href={slide.link}>
           <div className="absolute inset-0"></div>
         </Link>
+          </div>
+        ))}
+        <button
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-pink-200/70 hover:bg-pink-300/70 p-3 rounded-full shadow-md transition-all duration-300"
+          onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
+        >
+          
+        </button>
+        <button
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-pink-200/70 hover:bg-pink-300/70 p-3 rounded-full shadow-md transition-all duration-300"
+          onClick={() => setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1))}
+        >
+          
+        </button>
       </section>
 
       <section className="py-8 px-4 bg-gradient-to-r from-pink-100 to-pink-50">
@@ -49,11 +76,11 @@ const HomePage = () => {
       </section>
 
       <section
-        className="relative w-full h-[50vh] sm:h-screen bg-cover bg-center flex items-center justify-center"
+        className="relative w-full h-[30vh] bg-cover bg-center flex items-center justify-center"
         style={{ backgroundImage: `url('/img/10.png')` }}
       >
         <div className="absolute inset-0"></div>
-        <div className="absolute text-white text-lg sm:text-2xl font-semibold text-center px-6 py-2 bg-pink-600 bg-opacity-80 rounded-full shadow-lg">
+        <div className="absolute text-white text-base sm:text-xl font-semibold text-center px-4 py-1 bg-pink-600 bg-opacity-80 rounded-full shadow-lg">
           ✨ 10% of every purchase supports charity ✨
         </div>
       </section>

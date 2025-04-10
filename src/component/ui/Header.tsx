@@ -91,7 +91,7 @@ const Header: React.FC = () => {
           </Link>
           <Link href="/form">
             <div className="block px-6 py-4 text-gray-700 text-2xl hover:bg-pink-100 rounded-xl cursor-pointer transition-all duration-200 hover:translate-x-2" style={{ fontFamily: "'Caveat', cursive" }}>
-              📝 Form
+              📝 Custom Order
             </div>
           </Link>
           <Link href="/shop">
