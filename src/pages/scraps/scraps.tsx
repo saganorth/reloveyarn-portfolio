@@ -8,7 +8,7 @@ const ScrapPage = () => {
       {/* Hero Section */}
       <div className="relative h-[40vh] bg-cover bg-center">
         <Image
-          src="/img/yarn-pile.jpeg"
+          src="/img/yarn.png"
           alt="Pile of colorful recycled yarn"
           fill
           className="object-cover"
@@ -117,7 +117,7 @@ const ScrapPage = () => {
             href="/form"
             className="inline-block bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-full text-lg font-bold transition-colors duration-300 shadow-md"
           >
-            Start Your Sustainable Project ✨
+            custom orders ✨
           </Link>
         </div>
       </div>

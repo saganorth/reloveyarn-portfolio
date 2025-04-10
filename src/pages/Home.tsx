@@ -9,12 +9,31 @@ const HomePage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const { addToCart } = useCart();
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   
   const slides = [
-    { url: '/img/newbag.png', link: '/bags'},
-  {url: '/img/scraps.png', link:'/scraps'},
-
-    
+    { 
+      url: '/img/bags.png', 
+      link: '/bags',
+      alt: 'Shop handmade bags'
+    },
+    { 
+      url: '/img/scraps.png', 
+      link: '/scraps',
+      alt: 'Shop scrap yarn projects'
+    },
+    { 
+      url: '/img/vinter.png', 
+      link: '/vinter',
+      alt: 'Shop winter collection'
+    }
   ];
 
   useEffect(() => {
@@ -34,21 +53,30 @@ const HomePage = () => {
 
   return (
     <main className="text-gray-800 min-h-screen flex flex-col">
-  
       <section className="relative w-full h-[40vh] sm:h-screen">
         {slides.map((slide, index) => (
           <div
-        key={index}
-        className={`absolute w-full h-full transition-opacity duration-500 bg-cover bg-center ${
-          currentSlide === index ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{ backgroundImage: `url(${slide.url})` }}
+            key={index}
+            className={`absolute w-full h-full transition-opacity duration-500 ${
+              currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
           >
-        <Link href={slide.link}>
-          <div className="absolute inset-0"></div>
-        </Link>
+            <Link 
+              href={slide.link} 
+              className="block w-full h-full relative"
+              onClick={(e) => {
+                console.log('Navigating to:', slide.link);
+              }}
+            >
+              <div 
+                className="w-full h-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${slide.url})` }}
+                role="img" 
+                aria-label={slide.alt}
+              />
+            </Link>
           </div>
-        ))}
+    ))}
         <button
           className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-pink-200/70 hover:bg-pink-300/70 p-3 rounded-full shadow-md transition-all duration-300"
           onClick={() => setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))}
